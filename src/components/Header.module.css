@@ -1,0 +1,68 @@
+.header-bar {
+  position:relative;
+  display: flex;
+  justify-content: space-between;
+  width: 50vw;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(75, 75, 75, 0.467);
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.header-bar > li {
+  list-style: none;
+}
+
+.loc-header {
+  margin-left: 1rem;
+}
+.loc-header > header {
+  font-size: 2rem;
+}
+.loc-status {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.loc-status > div {
+  width: 10px;
+  height: 10px;
+  background-color: lime;
+  border-radius: 100px;
+}
+
+
+.search-form > input{
+  margin-right:4rem;
+  width:400px;
+  height:50px;
+  background-color:rgba(128, 128, 128, 0.172);
+  border-radius:50px 50px;
+  box-shadow:0 0 5px grey;
+  border:0;
+  font-size:1.5rem;
+  padding-left:20px;
+}
+
+.search-form > button{
+  position: absolute;
+  right:65px;
+  top:15px;
+  width:50px;
+  padding:10px;
+  margin:20px;
+  border-radius:0 50% 50% 0;
+  border:0;
+}
+.search-form > button > svg{
+  width:1.5rem;
+  height:1.5rem;
+  
+}
+
+::placeholder{
+  color:rgba(109, 109, 109, 0.549);
+}
+
+

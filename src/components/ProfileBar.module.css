@@ -1,0 +1,90 @@
+.profile-container{
+  width:25rem;
+  background-color:rgba(125, 39, 255, 0.076);
+  height:100%;
+  border-radius:0px 30px 30px 0px;
+}
+
+.profile-header{
+  box-sizing:border-box;
+  position:relative;
+  padding-left:6.5rem;
+  padding-right:2rem;
+  width:100%;
+  border-radius:0px 30px 0px 0px;
+  display:flex;
+  align-items:center;
+  height:8.5rem;
+  display:flex;
+  justify-content:space-between;
+  font-size:1.6rem;
+  color:white;
+  background: linear-gradient(to bottom right,rgb(162,62,255),rgb(125,39,255));
+}
+
+
+.icon-wrapper{
+  display:flex;
+  align-items:flex-end;
+  width:3.4rem;
+  height:3.5rem;
+  background:white;
+  position:absolute;
+  border-radius:10px;
+  top:2.5rem;
+  left:2rem;
+
+}
+.icon-wrapper > img{
+  height:3.2rem;
+}
+
+.profile-content{
+  margin:2rem;
+}
+
+.profile-content > header{
+  font-size:1.4rem;
+}
+
+.profile-content > ul{
+  list-style:none;
+  font-size:1.3rem;
+  color:grey;
+}
+
+.profile-content > ul > li{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-right:1rem;
+}
+
+.profile-container > button{
+  position:relative;
+  margin:2rem;
+  margin-bottom:0;
+  width:82%;
+  box-sizing:border-box;
+  height: 4rem;
+  border-radius:10px;
+  font-size:1.3rem;
+  color:white;
+  font-weight:bold;
+  background: linear-gradient(to bottom right,rgb(162,62,255),rgb(125,39,255));
+
+}
+
+.profile-container > button:hover{
+  background: linear-gradient(to bottom right,rgba(162, 62, 255, 0.885),rgba(125, 39, 255, 0.83));
+}
+
+.reg-button{
+  background:white !important;
+  box-shadow:0 0 10px grey;
+  color:grey !important;
+}
+
+.reg-button:hover{
+  background-color:rgba(179, 179, 179, 0.015) !important;
+}

@@ -1,0 +1,14 @@
+.hourly-container{
+  list-style: none;
+  margin-top:0;
+}
+
+.active{
+  font-weight:bold;
+  color:white !important;
+  background-image: linear-gradient(to top right, rgb(87, 236, 172) 20%, rgb(43, 212, 115))
+}
+
+.active > div{
+  border-top:2px dashed white !important;
+}

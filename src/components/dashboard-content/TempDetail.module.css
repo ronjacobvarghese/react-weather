@@ -1,0 +1,37 @@
+.detail-container > ul{
+  padding:0;
+}
+.detail-container > p{
+  font-size:1.5rem;
+  color:darkgrey;
+}
+
+
+.icon-card-container{
+  display:flex;
+  gap:1rem;
+  margin-bottom:2.5rem;
+}
+
+
+.icon-card-container > div{
+  width:3.8rem;
+  height:3.8rem;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border-radius:18px;
+
+}
+
+.icon-card-container > section > header{
+  font-size:1rem;
+  color:darkgrey;
+}
+
+.icon-card-container > section > p {
+  margin:0;
+  padding-top:0.8rem;
+  font-size: 1.2rem;
+}
