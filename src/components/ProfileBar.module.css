@@ -88,3 +88,12 @@
 .reg-button:hover{
   background-color:rgba(179, 179, 179, 0.015) !important;
 }
+
+.notify-wrapper{
+  position:absolute;
+  left:38%;
+  bottom:100px;
+  padding:1rem;
+  background:rgba(0, 0, 0, 0.713);
+  color:white;
+}

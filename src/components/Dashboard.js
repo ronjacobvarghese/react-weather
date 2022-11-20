@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
 
+
 import styles from './Dashboard.module.css';
 import TempStatus from './dashboard-content/TempStatus';
 import TempDetail from './dashboard-content/TempDetail';
@@ -13,7 +14,7 @@ function Dashboard() {
         <TempDetail/>
         <HourlyDetails/>
       </div>
-
+      
     </Fragment>
   )
 }

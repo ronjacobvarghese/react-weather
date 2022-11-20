@@ -12,6 +12,10 @@
   border-top:0.5rem solid red;
 }
 
+.card-container:hover{
+  box-shadow: 0 0 10px red;
+}
+
 .card-container > header{
   margin-top:2rem;
   font-size:1.5rem;
@@ -27,7 +31,6 @@
   font-size:4rem;
   width:15rem;
   margin-top:2rem;
-  font-weight:lighter;
 }
 
 .card-content > span{
@@ -41,7 +44,7 @@
 }
 
 .card-footer{
-  gap:3rem;
+  gap:2rem;
   margin:1.5rem;
   font-size:1.3rem;
   border-top: 2px solid lightgrey;

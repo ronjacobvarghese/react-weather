@@ -5,7 +5,11 @@
   margin-top:2rem;
   box-shadow: 0 0px 50px rgba(0, 0, 0, 0.275);
   box-sizing:border-box;
-  height:80vh;
+  height:1000px;
+  width:1600px;
   margin:1rem;
   border-radius:30px;
+}
+.main-body{
+  width:100%;
 }

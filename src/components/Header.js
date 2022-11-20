@@ -1,53 +1,48 @@
-import { Fragment, useState, useRef } from "react";
+import { Fragment, useRef, useContext } from "react";
 import { BiSearchAlt2 } from "react-icons/bi";
+import { BsFillBookmarkStarFill } from "react-icons/bs";
 import { useStore } from "../store/store";
-import { DateTime } from "luxon";
-import axios from "axios";
+import LocationContext from "../store/location-context";
 
 import styles from "./Header.module.css";
 
 function Header() {
   const [state, dispatch] = useStore();
   const locationRef = useRef("");
-  console.log(state);
+  const locationCtx = useContext(LocationContext);
 
-  function formatToLocalTime(secs, zone, format) {
-    return DateTime.fromSeconds(secs).setZone(zone).toFormat(format);
+  const bookmarkClasses = `${styles["bookmark-button"]} ${
+    state.adminData.bookmarked.locations.has(state.locationData.name)
+      ? styles["bookmark-active"]
+      : ""
+  }`;
+
+  function onClickBookmark() {
+    if (state.adminData.bookmarked.locations.has(state.locationData.name)) {
+      dispatch("REMOVE_BOOKMARKED", state.locationData.name);
+    } else {
+      dispatch("ADD_BOOKMARKED", {
+        name: state.locationData.name,
+        country: state.locationData.country,
+        weather: state.locationData.weather,
+        temp: state.locationData.temp,
+        feels_like: state.locationData.feels_like,
+        wind: state.locationData.wind,
+      });
+    }
   }
 
   async function searchLocation(event) {
     event.preventDefault();
     let location = locationRef.current.value;
-
-    if (location.trim() == "") {
+    if (location.trim() === "") {
       return;
     }
 
-    let dailyUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=39d888eaa3b8d2cbc54e36a04bbe362c&units=metric`;
-    let weeklyUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&cnt=24&appid=39d888eaa3b8d2cbc54e36a04bbe362c&units=metric`;
-
-     await axios.get(dailyUrl).then((res) => {
-      dispatch("RETRIEVE_LOC_DATA", res.data);
-    });
-
-     await axios.get(weeklyUrl).then((res) => {
-      let timezone = res.data.city.timezone;
-      let daily = res.data.list.map(d => {
-        return {
-        title:formatToLocalTime(d.dt, timezone,"cccc"),
-        time:formatToLocalTime(d.dt,timezone,"t"),
-        weather:d.weather[0].main,
-        temp:d.main.temp
-      }})
-      let dayTime = daily.filter(item => item.time === "09:00");
-      let nightTime = daily.filter(item => item.time === "21:00");
-      dispatch("RETRIEVE_DAILY_TIMES", {
-        dayTime,
-        nightTime
-      })
-      
-    });
-
+    if (state.locationData.name.toUpperCase() === location.toUpperCase()) {
+      return;
+    }
+    locationCtx.fetchLocation(location, state.locationData);
     locationRef.current.value = "";
   }
   return (
@@ -64,8 +59,12 @@ function Header() {
             </section>
           </div>
         </li>
-
-        <li>
+        <li className={styles["actions-container"]}>
+          {state.locationData.name && (
+            <div onClick={onClickBookmark} className={bookmarkClasses}>
+              <BsFillBookmarkStarFill size="2rem" color="grey" />
+            </div>
+          )}
           <form onSubmit={searchLocation} className={styles["search-form"]}>
             <input ref={locationRef} placeholder="Enter Location" />
             <button onClick={searchLocation}>

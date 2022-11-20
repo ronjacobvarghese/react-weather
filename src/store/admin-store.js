@@ -4,59 +4,99 @@ const configureStore = () => {
   const actions = {
     LOG_IN: (curState, adminData) => {
       const newState = {
-        id: adminData.id,
-        userName: adminData.name,
-        city: adminData.city,
-        recently_used: adminData.recently_used,
-        bookmarked: adminData.bookmarked,
+        userName: "Adithya Nair",
+        email: adminData.email,
+        city: "Kollam",
+        recently_used: curState.adminData.recently_used,
+        bookmarked: {
+          locations: new Set(),
+          locationData: {},
+        },
+        dayTime:adminData.dayTime,
+        nightTime:adminData.nightTime,
       };
 
       return { adminData: newState };
     },
     UPDATE_RECENTS: (curState, locData) => {
-      const locList = curState.recently_used;
-      if (locList.length === 3) {
+      const { adminData } = curState;
+      let locList = adminData.recently_used;
+
+      locList = locList.filter(
+        (item) => item.name.toLowerCase() !== locData.search.toLowerCase()
+      );
+
+      locList.unshift(locData);
+
+      if (locList.length === 4) {
         locList.pop();
       }
-      locList.unshift(locData);
       const newState = {
-        ...curState,
+        ...adminData,
         recently_used: locList,
       };
-
       return {
         adminData: newState,
       };
     },
-    ADD_BOOKMARKED: (curState, locData) => {
-      const bookList = curState.bookmarked;
-      bookList.unshift(locData);
+    ADD_BOOKMARKED: ({ adminData }, locData) => {
+      const {
+        bookmarked: { locations, locationData },
+      } = adminData;
+      const newLocations = new Set([...locations, locData.name]);
+      const newLocationData = {
+        ...locationData,
+        [locData.name]: {
+          ...locData,
+        },
+      };
       const newState = {
-        ...curState,
-        bookmarked: bookList,
+        ...adminData,
+        bookmarked: {
+          locations: newLocations,
+          locationData: newLocationData,
+        },
       };
       return { adminData: newState };
     },
-    REMOVE_BOOKMARKED: (curState, location) => {
-      const bookList = curState.bookmarked.filter(
-        (item) => item.name !== location
-      );
-      const newState = {
-        ...curState,
-        bookmarked: bookList,
-      };
+    REMOVE_BOOKMARKED: ({ adminData }, location) => {
+      const {
+        bookmarked: { locations, locationData },
+      } = adminData;
 
-      return { adminData: newState };
+      const newLocation = new Set(locations);
+
+      newLocation.delete(location);
+
+      const newLocationData = { ...locationData };
+
+      delete newLocationData[location];
+
+      const newState = {
+        ...adminData,
+        bookmarked: {
+          locations: newLocation,
+          locationData: newLocationData,
+        },
+      };
+      return {
+        adminData: newState,
+      };
     },
   };
   initStore(actions, {
     adminData: {
-      id: "",
-      userName: "",
-      city: "",
+      id: undefined,
+      userName: undefined,
+      city: undefined,
+      notification: "Please Login to see 5 day forcast of your city",
       recently_used: [],
-      forcasts: [],
-      bookmarked: [],
+      bookmarked: {
+        locations: new Set(),
+        locationData: {},
+      },
+      dayTime: [],
+      nightTime:[],
     },
   });
 };

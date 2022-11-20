@@ -50,13 +50,11 @@
 }
 
 .active{
-  display:none;
+  color:rgb(125,39,255);
+  border-right:4px solid rgb(125,39,255);
 }
 
-.active +svg{
+.active > svg{
   color:rgb(125,39,255);
-  border-right:3px solid rgb(125,39,255);
-  position:absolute;
-  left:1.3rem;
-  padding-right:1.9rem;
 }
+
